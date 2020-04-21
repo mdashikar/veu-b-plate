@@ -16,51 +16,52 @@ import Icons from '@cmp/utils/icons.vue'
 import './registerServiceWorker'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'aos/dist/aos.css'
+import './../node_modules/bulma/css/bulma.css';
+import 'bulma-helpers/css/bulma-helpers.min.css'
 
 Vue.config.productionTip = false
-
 Vue.directive('rp', Ripple)
 Vue.component('fa', Icons)
 
 Vue.use(toasted, {
-	position: 'bottom-center',
-	duration: 4000,
-	closeOnSwipe: true,
-	containerClass: 'toasts'
+    position: 'bottom-center',
+    duration: 4000,
+    closeOnSwipe: true,
+    containerClass: 'toasts'
 })
 
 Vue.use(Meta, { keyName: 'metas' })
 Vue.use(VueMq, {
-	breakpoints: {
-		sm: 813, // iphoneX max
-		lg: Infinity,
-	},
+    breakpoints: {
+        sm: 813, // iphoneX max
+        lg: Infinity,
+    },
 })
 
 aos.init({
-	offset: 200,
-	duration: 1000,
-	easing: 'ease-in-sine',
-	delay: 100,
-	disable: () => window.innerWidth < 814,
-	anchorPlacement: 'top-bottom',
+    offset: 200,
+    duration: 1000,
+    easing: 'ease-in-sine',
+    delay: 100,
+    disable: () => window.innerWidth < 814,
+    anchorPlacement: 'top-bottom',
 })
 
 new Vue({
-	router,
-	i18n,
-	methods: {
-		// litle npm script to disable body scroll on all devices (because those IOS hipsters think different)
-		lockScroll: el => disableBodyScroll(el),
-		unlockScroll: el => enableBodyScroll(el),
-	},
-	store,
-	mounted() {
-		SmoothScroll({
-			animationTime: 700,
-			accelerationDelta: 30,
-			accelerationMax: 3,
-		})
-	},
-	render: h => h(App),
+    router,
+    i18n,
+    methods: {
+        // litle npm script to disable body scroll on all devices (because those IOS hipsters think different)
+        lockScroll: el => disableBodyScroll(el),
+        unlockScroll: el => enableBodyScroll(el),
+    },
+    store,
+    mounted() {
+        SmoothScroll({
+            animationTime: 700,
+            accelerationDelta: 30,
+            accelerationMax: 3,
+        })
+    },
+    render: h => h(App),
 }).$mount('#app')
